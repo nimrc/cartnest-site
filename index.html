@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>卡带屋 Cartnest — 掌机上的复古游戏小屋</title>
+<meta name="description" content="卡带屋 Cartnest：为 Android 掌机打造的复古游戏启动器。手柄全操作、云端游戏库、半星评分与排行、游玩时长统计。">
+<meta name="theme-color" content="#0B0C10">
+<meta property="og:title" content="卡带屋 Cartnest">
+<meta property="og:description" content="为 Android 掌机打造的复古游戏启动器 · A retro game launcher made for Android handhelds.">
+<meta property="og:url" content="https://cartnest.app/">
+<meta property="og:type" content="website">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://cartnest.app/">
+<style>
+:root {
+  --base: #0B0C10; --raised: #16181F; --text: #F2F2F5; --dim: rgba(255,255,255,.70); --faint: rgba(255,255,255,.45);
+  --line: rgba(255,255,255,.08); --glass: rgba(255,255,255,.06); --glass-strong: rgba(255,255,255,.12);
+  --violet: #8B6CFF; --purple: #C05CFF; --coral: #FF6B8B; --green: #3DDC97; --gold: #E5C33A;
+  --grad: linear-gradient(135deg, var(--violet), var(--purple) 55%, var(--coral));
+  --radius: 22px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--base); color: var(--text); line-height: 1.6; overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html[data-lang="zh"] [lang="en"], html[data-lang="en"] [lang="zh"] { display: none !important; }
+a { color: inherit; text-decoration: none; }
+
+/* Ambient glow blobs behind everything, like the app's accent wash. */
+.aurora { position: fixed; inset: -20vh -20vw; z-index: -1; pointer-events: none; filter: blur(90px); opacity: .55; }
+.aurora i { position: absolute; border-radius: 50%; }
+.aurora i:nth-child(1) { width: 46vw; height: 46vw; left: 8vw; top: 0; background: #6B4CFF; animation: drift 22s ease-in-out infinite alternate; }
+.aurora i:nth-child(2) { width: 38vw; height: 38vw; right: 4vw; top: 18vh; background: #FF4F7B; opacity: .7; animation: drift 26s ease-in-out infinite alternate-reverse; }
+.aurora i:nth-child(3) { width: 34vw; height: 34vw; left: 30vw; top: 70vh; background: #2EC27E; opacity: .35; animation: drift 30s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(6vw, 8vh) scale(1.15); } }
+@media (prefers-reduced-motion: reduce) { .aurora i { animation: none; } }
+
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+/* Nav */
+nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); background: rgba(11,12,16,.55); border-bottom: 1px solid var(--line); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+.brand img { width: 32px; height: 32px; }
+.brand small { color: var(--faint); font-weight: 500; margin-left: 2px; }
+.nav-right { display: flex; gap: 8px; align-items: center; }
+.nav-right a.link { color: var(--dim); font-size: 14px; padding: 6px 10px; border-radius: 999px; }
+.nav-right a.link:hover { color: var(--text); background: var(--glass); }
+.lang { font: inherit; font-size: 13px; color: var(--text); background: var(--glass); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.lang:hover { background: var(--glass-strong); }
+@media (max-width: 640px) { .nav-right a.link { display: none; } }
+
+/* Hero */
+.hero { padding: 88px 0 56px; display: grid; grid-template-columns: 1.02fr 1.18fr; gap: 56px; align-items: center; }
+@media (max-width: 920px) { .hero { grid-template-columns: 1fr; padding-top: 56px; gap: 44px; text-align: center; } .hero .cta, .hero .tags { justify-content: center; } }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--dim); background: var(--glass); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
+.eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+h1 { font-size: clamp(40px, 6.4vw, 68px); line-height: 1.08; letter-spacing: -1.5px; margin: 20px 0 18px; font-weight: 800; }
+h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { font-size: clamp(16px, 2vw, 19px); color: var(--dim); max-width: 520px; }
+@media (max-width: 920px) { .lede { margin-inline: auto; } }
+.cta { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 16px; font-weight: 600; font-size: 16px; border: 1px solid var(--line); transition: transform .15s, background .15s; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn.primary { background: var(--grad); border-color: transparent; box-shadow: 0 10px 30px -10px rgba(192,92,255,.7); }
+.btn.ghost { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.btn.ghost:hover { background: var(--glass-strong); transform: translateY(-1px); }
+/* Downloads are not open yet: greyed out, not clickable. */
+.btn[aria-disabled="true"] { background: rgba(255,255,255,.07); color: rgba(255,255,255,.38); box-shadow: none; border-color: var(--line); cursor: not-allowed; filter: grayscale(1); }
+.btn .soon { font-size: 11px; font-weight: 600; letter-spacing: .3px; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.55); }
+.tags { display: flex; gap: 18px; margin-top: 26px; color: var(--faint); font-size: 13px; flex-wrap: wrap; }
+.tags span { display: inline-flex; align-items: center; gap: 6px; }
+.tags svg { width: 15px; height: 15px; }
+
+/* Handheld mockup */
+.device-stage { position: relative; perspective: 1400px; }
+.device {
+  position: relative; margin-inline: auto; width: min(560px, 100%); aspect-ratio: 16 / 10.4; border-radius: 34px; padding: 16px;
+  background: linear-gradient(160deg, #2a2d38, #15171d 60%, #1c1e26); box-shadow: 0 40px 80px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 1px rgba(255,255,255,.05);
+  transform: rotateX(8deg) rotateY(-10deg); transition: transform .6s;
+}
+.device:hover { transform: rotateX(2deg) rotateY(-3deg); }
+@media (max-width: 920px) { .device { transform: none; } }
+.screen { position: relative; height: 100%; border-radius: 20px; overflow: hidden; background: radial-gradient(120% 90% at 20% 0%, rgba(139,108,255,.55), transparent 60%), radial-gradient(90% 80% at 100% 100%, rgba(255,107,139,.35), transparent 60%), #0d0e13; padding: 4% 4.2%; display: flex; flex-direction: column; gap: 4%; font-size: clamp(7px, 1.35vw, 12px); }
+.chips { display: flex; gap: 2.2%; }
+.chip { padding: .45em 1.1em; border-radius: 999px; background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.75); white-space: nowrap; backdrop-filter: blur(8px); }
+.chip.on { background: rgba(255,255,255,.92); color: #111; font-weight: 700; }
+.sort { margin-left: auto; color: rgba(255,255,255,.55); }
+.shelf { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(2, 1fr); gap: 5% 3%; }
+.cart { min-height: 0; border-radius: 10px; position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
+.cart::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.22), transparent 40%); }
+.cart.c1 { background: conic-gradient(from 210deg at 30% 70%, #3D8BFF, #7C5CFF, #3D8BFF); }
+.cart.c2 { background: linear-gradient(160deg, #FF8A3D, #FF4F7B); }
+.cart.c3 { background: radial-gradient(circle at 70% 30%, #E5C33A, #2EC27E 70%); }
+.cart.c4 { background: linear-gradient(200deg, #2EC27E, #3D8BFF); }
+.cart.c5 { background: linear-gradient(130deg, #FF4F7B, #7C5CFF); }
+.cart.c6 { background: linear-gradient(160deg, #22252E, #3a3f4f); }
+.cart.c7 { background: radial-gradient(circle at 30% 30%, #FF8A3D, #7C5CFF 75%); }
+.cart.c8 { background: linear-gradient(180deg, #3D8BFF, #2EC27E); }
+.cart.c9 { background: conic-gradient(from 90deg, #E5C33A, #FF4F7B, #E5C33A); }
+.cart.c10 { background: linear-gradient(160deg, #7C5CFF, #22252E); }
+.cart.sel { outline: 2px solid #fff; outline-offset: 2px; transform: scale(1.06); box-shadow: 0 10px 30px -6px rgba(255,255,255,.35); }
+.cart .px { position: absolute; left: 18%; bottom: 14%; width: 30%; aspect-ratio: 1; background:
+  linear-gradient(#fff 0 0) 0 0/33% 33% no-repeat, linear-gradient(#fff 0 0) 100% 0/33% 33% no-repeat,
+  linear-gradient(#fff 0 0) 50% 50%/33% 33% no-repeat, linear-gradient(#fff 0 0) 0 100%/100% 33% no-repeat; opacity: .55; image-rendering: pixelated; }
+.panel { display: flex; align-items: center; gap: 4%; padding: 2.4% 3%; border-radius: 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(14px); }
+.panel .t { font-weight: 700; color: #fff; }
+.panel .m { color: rgba(255,255,255,.6); }
+.stars { color: var(--gold); letter-spacing: .08em; }
+.stars .half { background: linear-gradient(90deg, var(--gold) 50%, rgba(255,255,255,.25) 50%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hint { margin-left: auto; display: flex; gap: .8em; color: rgba(255,255,255,.65); white-space: nowrap; }
+.hint b { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%; background: rgba(255,255,255,.16); color: #fff; font-size: .9em; margin-right: .3em; }
+.float { position: absolute; padding: 10px 14px; border-radius: 16px; font-size: 13px; background: rgba(22,24,31,.6); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); box-shadow: 0 20px 40px -20px rgba(0,0,0,.8); display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.float .ic { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; }
+.float .ic svg { width: 17px; height: 17px; }
+.float small { display: block; color: var(--faint); font-size: 11px; }
+.f1 { left: -7%; top: 46%; animation: bob 6s ease-in-out infinite; }
+.f2 { right: -4%; top: -2%; animation: bob 7s ease-in-out infinite reverse; }
+@keyframes bob { 50% { transform: translateY(-10px); } }
+@media (max-width: 640px) { .float { display: none; } }
+
+/* Sections */
+section { padding: 72px 0; }
+.sec-head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+.sec-head h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.8px; line-height: 1.2; }
+.sec-head p { color: var(--dim); margin-top: 12px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 920px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+.card { position: relative; padding: 26px; border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden; transition: transform .2s, border-color .2s; }
+.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.16); }
+.card::before { content: ""; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); }
+.card .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 18px; }
+.card .ic svg { width: 22px; height: 22px; }
+.card h3 { font-size: 18px; margin-bottom: 8px; }
+.card p { color: var(--dim); font-size: 15px; }
+.v { background: rgba(139,108,255,.18); color: #B7A6FF; } .p { background: rgba(255,79,123,.16); color: #FF8FA8; }
+.g { background: rgba(61,220,151,.15); color: #6FE8B4; } .o { background: rgba(255,138,61,.16); color: #FFB07A; }
+.b { background: rgba(61,139,255,.16); color: #8CB8FF; } .y { background: rgba(229,195,58,.16); color: #F0D66B; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; }
+@media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
+.step { padding: 26px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--glass); }
+.step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--grad); font-weight: 700; margin-bottom: 14px; }
+.step h3 { font-size: 17px; margin-bottom: 6px; } .step p { color: var(--dim); font-size: 15px; }
+
+.final { text-align: center; padding: 56px 24px; border-radius: 30px; background: radial-gradient(80% 120% at 50% 0%, rgba(139,108,255,.35), transparent 70%), var(--glass); border: 1px solid var(--line); }
+.final img { width: 64px; height: 64px; margin-bottom: 18px; filter: drop-shadow(0 12px 24px rgba(192,92,255,.5)); }
+.final h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.6px; }
+.final p { color: var(--dim); margin-top: 10px; }
+.final .cta { justify-content: center; }
+
+footer { padding: 40px 0 56px; color: var(--faint); font-size: 13px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 28px; }
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.svg" alt=""><span lang="zh">卡带屋</span><span lang="en">Cartnest</span><small lang="zh">Cartnest</small></a>
+    <div class="nav-right">
+      <a class="link" href="#features"><span lang="zh">功能</span><span lang="en">Features</span></a>
+      <a class="link" href="#how"><span lang="zh">上手</span><span lang="en">Get started</span></a>
+      <button class="lang" id="lang" type="button" aria-label="Switch language">EN</button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="eyebrow"><span class="dot"></span><span lang="zh">内测中 · 即将上线</span><span lang="en">In private beta · Coming soon</span></span>
+      <h1>
+        <span lang="zh">把复古游戏<br>装进你的<span class="grad">卡带屋</span></span>
+        <span lang="en">A cozy home<br>for your <span class="grad">retro games</span></span>
+      </h1>
+      <p class="lede">
+        <span lang="zh">为 Android 掌机打造的复古游戏启动器。手柄就能操作全部界面，游戏库在云端，选中、下载、开玩，一气呵成。</span>
+        <span lang="en">A retro game launcher made for Android handhelds. Every screen works with a controller, your library lives in the cloud — pick a game, download, play.</span>
+      </p>
+      <div class="cta">
+        <span class="btn primary" aria-disabled="true" role="link" title="即将开放 / Coming soon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22A11.4 11.4 0 0 0 12 8.08c-1.79 0-3.47.39-4.92 1.06L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+          <span lang="zh">下载 Android 版</span><span lang="en">Download for Android</span>
+          <span class="soon" lang="zh">即将开放</span><span class="soon" lang="en">Soon</span>
+        </span>
+        <a class="btn ghost" href="#features">
+          <span lang="zh">看看能做什么</span><span lang="en">See what it does</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="tags">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span lang="zh">免费</span><span lang="en">Free</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span lang="zh">无广告</span><span lang="en">No ads</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span lang="zh">16:9 / 1080p 适配</span><span lang="en">16:9 &amp; 1080p ready</span></span>
+      </div>
+    </div>
+
+    <div class="device-stage" aria-hidden="true">
+      <div class="device">
+        <div class="screen">
+          <div class="chips">
+            <span class="chip on"><span lang="zh">全部</span><span lang="en">All</span></span>
+            <span class="chip"><span lang="zh">家用机</span><span lang="en">Console</span></span>
+            <span class="chip"><span lang="zh">掌机</span><span lang="en">Handheld</span></span>
+            <span class="chip"><span lang="zh">街机</span><span lang="en">Arcade</span></span>
+            <span class="sort"><span lang="zh">按评分 ▾</span><span lang="en">By rating ▾</span></span>
+          </div>
+          <div class="shelf">
+            <div class="cart c1"><i class="px"></i></div><div class="cart c2 sel"><i class="px"></i></div><div class="cart c3"><i class="px"></i></div><div class="cart c4"><i class="px"></i></div><div class="cart c5"><i class="px"></i></div>
+            <div class="cart c6"><i class="px"></i></div><div class="cart c7"><i class="px"></i></div><div class="cart c8"><i class="px"></i></div><div class="cart c9"><i class="px"></i></div><div class="cart c10"><i class="px"></i></div>
+          </div>
+          <div class="panel">
+            <div>
+              <div class="t"><span lang="zh">像素冒险</span><span lang="en">Pixel Quest</span></div>
+              <div class="m"><span class="stars">★★★★<span class="half">★</span></span> 4.5 · <span lang="zh">1.2k 次游玩</span><span lang="en">1.2k plays</span></div>
+            </div>
+            <div class="hint"><span><b>A</b><span lang="zh">开玩</span><span lang="en">Play</span></span><span><b>X</b><span lang="zh">排序</span><span lang="en">Sort</span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="float f1"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span><div><span lang="zh">下载完成</span><span lang="en">Downloaded</span><small lang="zh">已加入你的游戏库</small><small lang="en">Added to your library</small></div></div>
+      <div class="float f2"><span class="ic y"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><div><span lang="zh">你打了 4.5 星</span><span lang="en">You rated 4.5★</span><small lang="zh">半星也算数</small><small lang="en">Half stars count</small></div></div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span lang="zh">为掌机而生，而不是把手机界面塞进掌机</span><span lang="en">Built for handhelds, not a phone UI squeezed onto one</span></h2>
+        <p><span lang="zh">每一个页面都按 D-pad 和 A/B 键设计，放下触屏也能顺畅地逛、选、玩。</span><span lang="en">Every screen is designed around the D-pad and A/B — browse, pick and play without touching the screen.</span></p>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="ic v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8" fill="currentColor"/><circle cx="18" cy="13.5" r=".8" fill="currentColor"/></svg></div>
+          <h3><span lang="zh">手柄全操作</span><span lang="en">Controller-first</span></h3>
+          <p><span lang="zh">焦点永远清晰可见，对话框、输入框、评分都能用按键完成，A/B 键位可按习惯互换。</span><span lang="en">Focus is always visible. Dialogs, text fields and ratings all work with buttons, and A/B can be swapped to taste.</span></p></div>
+        <div class="card"><div class="ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.34 9.5 4 4 0 0 0 6.5 19z"/><path d="M12 12v6M9.5 15.5L12 18l2.5-2.5"/></svg></div>
+          <h3><span lang="zh">云端游戏库</span><span lang="en">Library in the cloud</span></h3>
+          <p><span lang="zh">按平台分类浏览，封面和简介即时可见；想玩哪个就下哪个，不必提前把存储塞满。</span><span lang="en">Browse by platform with covers and summaries; download only what you want to play instead of filling your storage up front.</span></p></div>
+        <div class="card"><div class="ic y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.1 6.4 20l1.1-6.2L3 9.4l6.2-.9z"/></svg></div>
+          <h3><span lang="zh">半星评分与排行</span><span lang="en">Half-star ratings</span></h3>
+          <p><span lang="zh">真正玩过才能打分，0.5 到 5 星，可以附一句短评。按评分、下载量、游玩量或名称排序。</span><span lang="en">Rate from 0.5 to 5 stars once you've actually played, with an optional short review. Sort by rating, downloads, plays or name.</span></p></div>
+        <div class="card"><div class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></div>
+          <h3><span lang="zh">游玩时长统计</span><span lang="en">Playtime tracking</span></h3>
+          <p><span lang="zh">自动记录每次游玩，看看自己在哪款游戏上花了最多的时间。</span><span lang="en">Every session is logged automatically, so you can see where your hours really go.</span></p></div>
+        <div class="card"><div class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+          <h3><span lang="zh">像素头像与昵称</span><span lang="en">Pixel avatars</span></h3>
+          <p><span lang="zh">手机号一步登录，新号码自动注册；挑一个原创像素头像，起个昵称。</span><span lang="en">Sign in with your phone number — new numbers register automatically. Pick an original pixel avatar and a nickname.</span></p></div>
+        <div class="card"><div class="ic o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 9h20"/></svg></div>
+          <h3><span lang="zh">液态玻璃界面</span><span lang="en">Liquid-glass UI</span></h3>
+          <p><span lang="zh">半透明的玻璃质感、柔和的光晕和流畅的动效，在 1080p 和 16:9 屏幕上同样精致。</span><span lang="en">Translucent glass, soft glows and fluid motion — just as sharp on 1080p and 16:9 screens.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span lang="zh">三步开玩</span><span lang="en">Three steps to play</span></h2>
+        <p><span lang="zh">开箱即用，不用自己配置服务器。</span><span lang="en">Works out of the box — no server to set up.</span></p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3><span lang="zh">安装卡带屋</span><span lang="en">Install Cartnest</span></h3><p><span lang="zh">支持 Android 掌机，1080p 与 16:9 屏幕都适配。</span><span lang="en">Runs on Android handhelds, including 1080p and 16:9 screens.</span></p></div>
+        <div class="step"><h3><span lang="zh">手机号登录</span><span lang="en">Sign in with your phone</span></h3><p><span lang="zh">收个验证码就好，新号码会自动注册。</span><span lang="en">Just a verification code; new numbers register automatically.</span></p></div>
+        <div class="step"><h3><span lang="zh">挑一盘，开玩</span><span lang="en">Pick one and play</span></h3><p><span lang="zh">选中游戏按 A 下载，下完直接用对应的模拟器启动。</span><span lang="en">Press A to download, then it launches straight into the right emulator.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final">
+        <img src="logo.svg" alt="">
+        <h2><span lang="zh">卡带屋即将开放下载</span><span lang="en">Cartnest is almost here</span></h2>
+        <p><span lang="zh">我们正在内测打磨，正式版上线后这里就能直接下载。</span><span lang="en">We're polishing it in private beta. Downloads open here at launch.</span></p>
+        <div class="cta">
+          <span class="btn primary" aria-disabled="true" role="link" title="即将开放 / Coming soon">
+            <span lang="zh">下载 Android 版</span><span lang="en">Download for Android</span>
+            <span class="soon" lang="zh">即将开放</span><span class="soon" lang="en">Soon</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y">2026</span> Cartnest 卡带屋</span>
+    <span lang="zh">文中提及的商标归各自所有者所有。</span>
+    <span lang="en">All trademarks belong to their respective owners.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('lang');
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  function set(l) {
+    root.dataset.lang = l;
+    root.lang = l === 'zh' ? 'zh-CN' : 'en';
+    btn.textContent = l === 'zh' ? 'EN' : '中文';
+    document.title = l === 'zh' ? '卡带屋 Cartnest — 掌机上的复古游戏小屋' : 'Cartnest — a cozy home for retro games on your handheld';
+  }
+  set(saved || (/^zh/i.test(navigator.language || '') ? 'zh' : 'en'));
+  btn.addEventListener('click', function () {
+    var l = root.dataset.lang === 'zh' ? 'en' : 'zh';
+    set(l);
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  });
+  document.getElementById('y').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="g" x1="4" y1="2" x2="44" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8B6CFF"/><stop offset=".55" stop-color="#C05CFF"/><stop offset="1" stop-color="#FF6B8B"/>
+    </linearGradient>
+    <linearGradient id="s" x1="24" y1="2" x2="24" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".33"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M14,2h20a12,12 0,0 1,12 12v20a12,12 0,0 1,-12 12h-20a12,12 0,0 1,-12 -12v-20a12,12 0,0 1,12 -12z"/>
+  <path fill="url(#s)" d="M14,2h20a12,12 0,0 1,12 12v6c-10,-4 -30,-4 -44,2v-8a12,12 0,0 1,12 -12z"/>
+  <path d="M10.5,21.5L24,10.5L37.5,21.5" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path fill="#fff" d="M17.5,20.5h13a2.5,2.5 0,0 1,2.5 2.5v13.5a2.5,2.5 0,0 1,-2.5 2.5h-13a2.5,2.5 0,0 1,-2.5 -2.5v-13.5a2.5,2.5 0,0 1,2.5 -2.5z"/>
+  <path fill="#A56BFF" d="M19.5,23.5h9a1.5,1.5 0,0 1,1.5 1.5v5a1.5,1.5 0,0 1,-1.5 1.5h-9a1.5,1.5 0,0 1,-1.5 -1.5v-5a1.5,1.5 0,0 1,1.5 -1.5z"/>
+  <path fill="#A56BFF" fill-opacity=".55" d="M20,34h8v1.4h-8z M20,36.4h8v1.2h-8z"/>
+</svg>
