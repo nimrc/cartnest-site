@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隐私政策 · 卡带屋 Cartnest</title>
+<meta name="description" content="卡带屋 Cartnest 隐私政策：我们收集哪些信息、如何使用、与谁共享，以及你如何管理和删除它们。">
+<meta name="theme-color" content="#0B0C10">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://cartnest.app/privacy">
+<style>
+:root { --base: #0B0C10; --text: #F2F2F5; --dim: rgba(255,255,255,.72); --faint: rgba(255,255,255,.45); --line: rgba(255,255,255,.08); --glass: rgba(255,255,255,.05); --accent: #C9B8FF;
+  --grad: linear-gradient(135deg, #8B6CFF, #C05CFF 55%, #FF6B8B); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--base); color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", Roboto, sans-serif; }
+body::before { content: ""; position: fixed; inset: -30vh -20vw auto; height: 70vh; z-index: -1; background: radial-gradient(50% 60% at 30% 40%, rgba(107,76,255,.45), transparent 70%), radial-gradient(40% 50% at 80% 30%, rgba(255,79,123,.28), transparent 70%); filter: blur(40px); }
+html[data-lang="zh"] [lang="en"], html[data-lang="en"] [lang="zh"] { display: none !important; }
+a { color: var(--accent); }
+.wrap { width: min(780px, 100% - 32px); margin-inline: auto; }
+nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); background: rgba(11,12,16,.6); border-bottom: 1px solid var(--line); }
+nav .wrap { width: min(1120px, 100% - 32px); display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); text-decoration: none; }
+.brand img { width: 32px; height: 32px; }
+.lang { font: inherit; font-size: 13px; color: var(--text); background: var(--glass); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+header { padding: 64px 0 28px; }
+h1 { font-size: clamp(32px, 5vw, 46px); letter-spacing: -1px; line-height: 1.15; }
+.meta { color: var(--faint); font-size: 14px; margin-top: 10px; }
+.summary { margin: 28px 0 8px; padding: 22px 24px; border-radius: 20px; background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border: 1px solid var(--line); }
+.summary h2 { font-size: 16px; margin-bottom: 8px; }
+.summary ul { padding-left: 1.2em; color: var(--dim); }
+main section { padding: 26px 0; border-bottom: 1px solid var(--line); }
+main section:last-child { border-bottom: 0; }
+h2 { font-size: 21px; letter-spacing: -.2px; margin-bottom: 10px; }
+h3 { font-size: 16px; margin: 16px 0 6px; }
+p, li { color: var(--dim); font-size: 15.5px; }
+p + p { margin-top: 10px; }
+ul { padding-left: 1.3em; margin-top: 6px; }
+li + li { margin-top: 4px; }
+strong { color: var(--text); font-weight: 600; }
+.table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14.5px; }
+.table th, .table td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--dim); }
+.table th { color: var(--text); font-weight: 600; background: var(--glass); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; margin-top: 10px; }
+.table-wrap .table { margin: 0; min-width: 520px; }
+.table tr:last-child td { border-bottom: 0; }
+.table td:first-child { white-space: nowrap; }
+footer { padding: 36px 0 56px; color: var(--faint); font-size: 13px; }
+footer .wrap { border-top: 1px solid var(--line); padding-top: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+footer a { color: var(--faint); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="logo.svg" alt=""><span lang="zh">卡带屋</span><span lang="en">Cartnest</span></a>
+    <button class="lang" id="lang" type="button" aria-label="Switch language">EN</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header>
+    <h1><span lang="zh">隐私政策</span><span lang="en">Privacy Policy</span></h1>
+    <p class="meta"><span lang="zh">生效日期：2026 年 10 月 15 日</span><span lang="en">Effective: October 15, 2026</span></p>
+
+    <div class="summary">
+      <h2><span lang="zh">一分钟看懂</span><span lang="en">The short version</span></h2>
+      <ul lang="zh">
+        <li>我们只收集让卡带屋正常工作所需的信息：手机号、昵称和头像选择、设备型号，以及你的下载和游玩记录。</li>
+        <li>没有广告，不出售你的数据，App 里也没有第三方统计或广告 SDK。</li>
+        <li>你的评分和短评会连同昵称、头像公开显示给其他用户。</li>
+        <li>你可以随时要求查看、导出或删除你的数据，包括注销账号。</li>
+      </ul>
+      <ul lang="en">
+        <li>We only collect what Cartnest needs to work: your phone number, nickname and avatar choice, device model, and your download and play history.</li>
+        <li>No ads, we never sell your data, and the app contains no third-party analytics or advertising SDKs.</li>
+        <li>Your ratings and reviews are shown publicly to other users together with your nickname and avatar.</li>
+        <li>You can ask us to access, export or delete your data, including closing your account, at any time.</li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2><span lang="zh">1. 适用范围</span><span lang="en">1. Scope</span></h2>
+      <p lang="zh">本政策适用于卡带屋 Cartnest Android 应用（下称"App"）、它使用的在线服务，以及本网站 cartnest.app。文中"我们"指卡带屋的运营者。</p>
+      <p lang="en">This policy covers the Cartnest Android app (the "App"), the online services it uses, and this website, cartnest.app. "We" means the operator of Cartnest.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">2. 我们收集的信息</span><span lang="en">2. Information we collect</span></h2>
+      <div class="table-wrap">
+        <table class="table" lang="zh">
+          <tr><th>类别</th><th>具体内容</th><th>用途</th></tr>
+          <tr><td><strong>账号信息</strong></td><td>手机号；你设置的昵称；你选择的内置头像（只记录选了哪一个，不会上传照片）</td><td>登录注册、在 App 内显示你的资料</td></tr>
+          <tr><td><strong>设备信息</strong></td><td>App 首次运行时随机生成的设备编号（不是 IMEI、Android ID 等硬件标识）、设备厂商与型号、Android 版本、App 版本与安装渠道</td><td>区分你的多台设备、排查兼容性问题</td></tr>
+          <tr><td><strong>下载记录</strong></td><td>下载了哪款游戏、时间、文件大小、成功或失败（以及失败原因）</td><td>提供下载服务、统计下载量</td></tr>
+          <tr><td><strong>游玩记录</strong></td><td>玩了哪款游戏、使用的模拟器、开始和结束时间、时长</td><td>显示你的游玩时长、计算游戏热度和排行、确认你玩过某款游戏后才能评分</td></tr>
+          <tr><td><strong>评分与短评</strong></td><td>你给出的星级（0.5–5）和可选的短评（最多 500 字）</td><td>公开展示，帮助其他玩家挑选游戏</td></tr>
+        </table>
+        <table class="table" lang="en">
+          <tr><th>Category</th><th>What exactly</th><th>Why</th></tr>
+          <tr><td><strong>Account</strong></td><td>Your phone number; the nickname you set; the built-in avatar you pick (we store which one, no photo is uploaded)</td><td>Sign-in and showing your profile in the App</td></tr>
+          <tr><td><strong>Device</strong></td><td>A random device ID generated on first launch (not IMEI, Android ID or any hardware identifier), device maker and model, Android version, App version and install channel</td><td>Telling your devices apart and diagnosing compatibility issues</td></tr>
+          <tr><td><strong>Downloads</strong></td><td>Which game, when, file size, and whether it succeeded or failed (with the reason)</td><td>Providing downloads and counting them</td></tr>
+          <tr><td><strong>Play history</strong></td><td>Which game, which emulator, start and end time, duration</td><td>Showing your playtime, computing popularity and rankings, and checking you've played a game before you rate it</td></tr>
+          <tr><td><strong>Ratings &amp; reviews</strong></td><td>Your star rating (0.5–5) and optional short review (up to 500 characters)</td><td>Shown publicly to help other players choose</td></tr>
+        </table>
+      </div>
+
+      <h3><span lang="zh">我们不收集的</span><span lang="en">What we don't collect</span></h3>
+      <p lang="zh">App 不读取你的通讯录、位置、相册、麦克风或摄像头，也不扫描你的文件。它只申请三项权限：<strong>网络访问</strong>（连接服务）、<strong>通知</strong>（显示下载进度）和<strong>前台服务</strong>（让下载在后台继续）。App 里没有广告、第三方统计或崩溃上报 SDK。</p>
+      <p lang="en">The App does not read your contacts, location, photos, microphone or camera, and does not scan your files. It asks for three permissions only: <strong>network access</strong> (to reach our service), <strong>notifications</strong> (download progress) and <strong>foreground service</strong> (so downloads continue in the background). There are no ads, third-party analytics or crash-reporting SDKs in the App.</p>
+
+      <h3><span lang="zh">网络请求中的技术信息</span><span lang="en">Technical data in network requests</span></h3>
+      <p lang="zh">和所有联网服务一样，你的 IP 地址等连接信息会被下文列出的基础设施服务商在传输过程中处理。我们自己的下载服务不记录访问日志。</p>
+      <p lang="en">As with any online service, connection data such as your IP address is processed in transit by the infrastructure providers listed below. Our own download service does not keep access logs.</p>
+
+      <h3><span lang="zh">保存在你设备上的</span><span lang="en">Stored on your device</span></h3>
+      <p lang="zh">下载的游戏文件、游戏存档、本地游玩时长和登录状态保存在你的设备上，卸载 App 或清除数据即可删除。</p>
+      <p lang="en">Downloaded game files, save data, local playtime and your sign-in state are stored on your device and are removed when you uninstall the App or clear its data.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">3. 我们如何使用信息</span><span lang="en">3. How we use it</span></h2>
+      <ul lang="zh">
+        <li>提供核心功能：登录、浏览游戏库、下载、记录游玩时长、评分。</li>
+        <li>计算汇总统计，例如每款游戏的下载量、游玩次数、平均评分和排行榜。这些数字是汇总后的结果，不会显示是谁玩的。</li>
+        <li>维护服务安全，防止滥用（例如限制异常频繁的下载）。</li>
+      </ul>
+      <ul lang="en">
+        <li>To run the core features: sign-in, browsing the library, downloads, playtime tracking and ratings.</li>
+        <li>To compute aggregate statistics such as per-game downloads, plays, average rating and rankings. These are totals and don't reveal who played.</li>
+        <li>To keep the service secure and prevent abuse (for example, unusually frequent downloads).</li>
+      </ul>
+      <p lang="zh">我们<strong>不会</strong>出售你的个人信息，不会用它投放广告，也不会用它做自动化决策来影响你的权利。</p>
+      <p lang="en">We do <strong>not</strong> sell your personal information, use it for advertising, or use it for automated decisions that affect your rights.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">4. 公开显示的内容</span><span lang="en">4. What other users can see</span></h2>
+      <p lang="zh">你提交的评分和短评会连同你的<strong>昵称和头像</strong>显示给所有用户。你的手机号永远不会公开。</p>
+      <p lang="en">Ratings and reviews you submit are visible to all users along with your <strong>nickname and avatar</strong>. Your phone number is never shown.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">5. 服务商与数据存放地</span><span lang="en">5. Service providers and where data lives</span></h2>
+      <p lang="zh">我们依靠以下服务商运行卡带屋。他们只按我们的指示处理数据，用于提供各自的服务：</p>
+      <p lang="en">We rely on these providers to run Cartnest. They process data only on our instructions, to provide their service:</p>
+      <ul lang="zh">
+        <li><strong>Supabase</strong>：账号认证和数据库，上述账号、设备、下载、游玩和评分数据存放在其位于韩国首尔的服务器上。</li>
+        <li><strong>Cloudflare</strong>：网络传输与域名解析，你和我们服务之间的连接会经过它。</li>
+        <li><strong>短信服务商</strong>：发送登录验证码时会处理你的手机号和验证码。</li>
+        <li><strong>GitHub Pages</strong>：托管本网站。</li>
+      </ul>
+      <ul lang="en">
+        <li><strong>Supabase</strong> — authentication and database. The account, device, download, play and rating data above is stored on its servers in Seoul, South Korea.</li>
+        <li><strong>Cloudflare</strong> — network delivery and DNS; connections between you and our service pass through it.</li>
+        <li><strong>SMS provider</strong> — processes your phone number and the code when sending sign-in codes.</li>
+        <li><strong>GitHub Pages</strong> — hosts this website.</li>
+      </ul>
+      <p lang="zh">除此之外，只有在法律要求时，我们才会披露你的信息。</p>
+      <p lang="en">Beyond this, we disclose information only when required by law.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">6. 保存期限</span><span lang="en">6. How long we keep it</span></h2>
+      <p lang="zh">账号存续期间我们会保存上述信息。你注销账号后，我们会在 <strong>30 天内</strong>删除你的账号以及关联的个人数据（资料、设备、下载和游玩记录、评分与短评）。已经汇总、无法再关联到你的统计数字（例如某款游戏的总下载量）会保留。</p>
+      <p lang="en">We keep this information while your account exists. When you close your account, we delete it and the personal data linked to it (profile, devices, download and play history, ratings and reviews) within <strong>30 days</strong>. Aggregate figures that can no longer be linked to you (such as a game's total downloads) are kept.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">7. 你的权利</span><span lang="en">7. Your choices and rights</span></h2>
+      <ul lang="zh">
+        <li><strong>修改资料</strong>：在 App 的「设置 → 账号」里随时修改昵称和头像。</li>
+        <li><strong>查看与导出</strong>：发邮件给我们，即可获取我们保存的关于你的数据副本。</li>
+        <li><strong>更正或删除</strong>：可以要求删除某条评分、短评或全部数据。</li>
+        <li><strong>注销账号</strong>：用注册手机号发邮件到下方地址申请，我们核实后处理。</li>
+      </ul>
+      <ul lang="en">
+        <li><strong>Edit your profile</strong> any time in the App under Settings → Account.</li>
+        <li><strong>Access and export</strong>: email us for a copy of the data we hold about you.</li>
+        <li><strong>Correct or delete</strong>: ask us to remove a rating, a review, or all of your data.</li>
+        <li><strong>Close your account</strong>: email the address below, mentioning your registered phone number, and we'll handle it after verifying it's you.</li>
+      </ul>
+      <p lang="zh">根据你所在地区的法律，你可能还享有其他权利，例如撤回同意或向监管机构投诉，我们会依法配合。</p>
+      <p lang="en">Depending on where you live, you may have further rights, such as withdrawing consent or complaining to a regulator; we'll honour them as the law requires.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">8. 安全</span><span lang="en">8. Security</span></h2>
+      <p lang="zh">所有通信均经 HTTPS 加密；下载链接经过签名且很快过期；服务器只能访问各自工作所需的最少数据。没有任何系统能保证绝对安全，如果发生影响你的数据安全事件，我们会依法通知你。</p>
+      <p lang="en">All traffic is encrypted with HTTPS; download links are signed and expire quickly; each server component can reach only the data it needs. No system is perfectly secure; if an incident affects your data we will notify you as the law requires.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">9. 儿童</span><span lang="en">9. Children</span></h2>
+      <p lang="zh">卡带屋不面向 14 周岁以下的儿童，我们也不会在知情的情况下收集他们的信息。如果你认为有儿童向我们提供了信息，请联系我们删除。</p>
+      <p lang="en">Cartnest is not directed at children under 14, and we don't knowingly collect their information. If you believe a child has given us data, contact us and we'll delete it.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">10. 政策更新</span><span lang="en">10. Changes</span></h2>
+      <p lang="zh">本政策更新时，我们会修改顶部的生效日期；如有重大变化，会在 App 内提示你。</p>
+      <p lang="en">When we update this policy we change the effective date above; for significant changes we'll also let you know in the App.</p>
+    </section>
+
+    <section>
+      <h2><span lang="zh">11. 联系我们</span><span lang="en">11. Contact</span></h2>
+      <p lang="zh">关于隐私的任何问题或请求，请发邮件至 <a href="mailto:privacy@cartnest.app">privacy@cartnest.app</a>。</p>
+      <p lang="en">For any privacy question or request, email <a href="mailto:privacy@cartnest.app">privacy@cartnest.app</a>.</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y">2026</span> Cartnest 卡带屋</span>
+    <a href="./"><span lang="zh">返回首页</span><span lang="en">Back home</span></a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('lang'), saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  function set(l) {
+    root.dataset.lang = l; root.lang = l === 'zh' ? 'zh-CN' : 'en';
+    btn.textContent = l === 'zh' ? 'EN' : '中文';
+    document.title = l === 'zh' ? '隐私政策 · 卡带屋 Cartnest' : 'Privacy Policy · Cartnest';
+  }
+  set(saved || (/^zh/i.test(navigator.language || '') ? 'zh' : 'en'));
+  btn.addEventListener('click', function () {
+    var l = root.dataset.lang === 'zh' ? 'en' : 'zh'; set(l);
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  });
+  document.getElementById('y').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
