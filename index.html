@@ -69,7 +69,7 @@ h1 .grad { background: var(--grad); -webkit-background-clip: text; background-cl
 .btn.primary { background: var(--grad); border-color: transparent; box-shadow: 0 10px 30px -10px rgba(192,92,255,.7); }
 .btn.ghost { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .btn.ghost:hover { background: var(--glass-strong); transform: translateY(-1px); }
-/* Downloads are not open yet: greyed out, not clickable. */
+/* Download badges */
 .btn[aria-disabled="true"] { background: rgba(255,255,255,.07); color: rgba(255,255,255,.38); box-shadow: none; border-color: var(--line); cursor: not-allowed; filter: grayscale(1); }
 .btn .soon { font-size: 11px; font-weight: 600; letter-spacing: .3px; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.55); }
 .tags { display: flex; gap: 18px; margin-top: 26px; color: var(--faint); font-size: 13px; flex-wrap: wrap; }
@@ -176,7 +176,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 <main id="top">
   <div class="wrap hero">
     <div>
-      <span class="eyebrow"><span class="dot"></span><span lang="zh">内测中 · 即将上线</span><span lang="en">In private beta · Coming soon</span></span>
+      <span class="eyebrow"><span class="dot"></span><span lang="zh">0.1.0 · 公开测试版</span><span lang="en">0.1.0 · Public test build</span></span>
       <h1>
         <span lang="zh">把复古游戏<br>装进你的<span class="grad">卡带屋</span></span>
         <span lang="en">A cozy home<br>for your <span class="grad">retro games</span></span>
@@ -186,11 +186,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <span lang="en">A retro game launcher made for Android handhelds. Every screen works with a controller, your library lives in the cloud — pick a game, download, play.</span>
       </p>
       <div class="cta">
-        <span class="btn primary" aria-disabled="true" role="link" title="即将开放 / Coming soon">
+        <a class="btn primary" href="https://pub-6f1404b032c6418bbebe28ab0a15bea6.r2.dev/releases/0.1.0/Cartnest-0.1.0-test.apk">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22A11.4 11.4 0 0 0 12 8.08c-1.79 0-3.47.39-4.92 1.06L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
-          <span lang="zh">下载 Android 版</span><span lang="en">Download for Android</span>
-          <span class="soon" lang="zh">即将开放</span><span class="soon" lang="en">Soon</span>
-        </span>
+          <span lang="zh">下载 Android 测试版</span><span lang="en">Download Android test build</span>
+          <span class="soon">0.1.0</span>
+        </a>
         <a class="btn ghost" href="#features">
           <span lang="zh">看看能做什么</span><span lang="en">See what it does</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -278,13 +278,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <div class="wrap">
       <div class="final">
         <img src="logo.svg" alt="">
-        <h2><span lang="zh">卡带屋即将开放下载</span><span lang="en">Cartnest is almost here</span></h2>
-        <p><span lang="zh">我们正在内测打磨，正式版上线后这里就能直接下载。</span><span lang="en">We're polishing it in private beta. Downloads open here at launch.</span></p>
+        <h2><span lang="zh">卡带屋 0.1.0 开放测试</span><span lang="en">Cartnest 0.1.0 is ready to test</span></h2>
+        <p><span lang="zh">适用于 Android 8.0 及以上。任意手机号 + 验证码 123456，所有号码共用专用测试账号，不发送短信。</span><span lang="en">For Android 8.0 and later. Enter any phone number and code 123456. All numbers use one shared test account; no SMS is sent.</span></p>
         <div class="cta">
-          <span class="btn primary" aria-disabled="true" role="link" title="即将开放 / Coming soon">
-            <span lang="zh">下载 Android 版</span><span lang="en">Download for Android</span>
-            <span class="soon" lang="zh">即将开放</span><span class="soon" lang="en">Soon</span>
-          </span>
+          <a class="btn primary" href="https://pub-6f1404b032c6418bbebe28ab0a15bea6.r2.dev/releases/0.1.0/Cartnest-0.1.0-test.apk">
+            <span lang="zh">下载 Android 测试版</span><span lang="en">Download Android test build</span>
+            <span class="soon">0.1.0</span>
+        </a>
         </div>
       </div>
     </div>
